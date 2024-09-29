@@ -1,0 +1,86 @@
+import os
+
+FILENAME = "phonebook.txt"
+
+def display_menu():
+    print("\n--- Phone Book ---")
+    print("1 for Enter New Entry")
+    print("2 for Delete an Existing Entry")
+    print("3 for Change Phone Number")
+    print("4 for Display Phone Book")
+    print("5 for Exit")
+    print("-------------------")
+
+def load_phone_book():
+    if not os.path.exists(FILENAME):
+        return {}
+    with open(FILENAME, 'r') as file:
+        phone_book = {}
+        for line in file:
+            name, number = line.strip().split(':')
+            phone_book[name] = number
+        return phone_book
+
+def save_phone_book(phone_book):
+    with open(FILENAME, 'w') as file:
+        for name, number in phone_book.items():
+            file.write(f"{name}:{number}\n")
+
+def enter_new_entry(phone_book):
+    name = input("Enter the name: ")
+    number = input("Enter the phone number: ")
+    phone_book[name] = number
+    save_phone_book(phone_book)
+    print(f"Entry added: {name} - {number}")
+
+def delete_entry(phone_book):
+    name = input("Enter the name of the entry to delete: ")
+    if name in phone_book:
+        del phone_book[name]
+        save_phone_book(phone_book)
+        print(f"Entry deleted: {name}")
+    else:
+        print("Entry not found.")
+
+def change_phone_number(phone_book):
+    name = input("Enter the name of the entry to change: ")
+    if name in phone_book:
+        new_number = input("Enter the new phone number: ")
+        phone_book[name] = new_number
+        save_phone_book(phone_book)
+        print(f"Entry updated: {name} - {new_number}")
+    else:
+        print("Entry not found.")
+
+def display_phone_book(phone_book):
+    if not phone_book:
+        print("Phone book is empty.")
+    else:
+        print("\n--- Phone Book Entries ---")
+        for name, number in phone_book.items():
+            print(f"{name}: {number}")
+        print("---------------------------")
+
+def main():
+    phone_book = load_phone_book()
+
+    while True:
+        display_menu()
+        choice = input("Choose an option (1-5): ")
+
+        if choice == '1':
+            enter_new_entry(phone_book)
+        elif choice == '2':
+            delete_entry(phone_book)
+        elif choice == '3':
+            change_phone_number(phone_book)
+        elif choice == '4':
+            display_phone_book(phone_book)
+        elif choice == '5':
+            print("Exiting the phone book. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
