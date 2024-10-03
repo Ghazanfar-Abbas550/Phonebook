@@ -1,0 +1,37 @@
+# Phone Book
+
+-----
+
+**Menu Options**
+
+1. **Enter New Entry**
+2. **Delete an Existing Entry**
+3. **Change Phone Number**
+4. **Display Phone Book**
+5. **Exit**
+
+-----
+
+### Example: Adding a New Entry
+
+- **Name:** John Doe  
+- **Phone Number:** +1234567890  
+
+-----
+
+### Example: Displaying Phone Book
+
+- **John Doe:** +1234567890  
+- **Jane Smith:** +0987654321  
+
+-----
+
+### Example: Deleting an Entry
+
+- **Entry deleted:** John Doe
+
+-----
+
+### Exiting entry
+
+- **Exiting Calculator:** When type 5
